@@ -5,7 +5,7 @@ var splitUrl = [];
 var strName;
 var savedData;
 var selection = 0;
-var options = ["Soccer", "Gymnastics", "Softball/Baseball", "Other Sports", "School", "Chores", "10 plus ones", "Minecraft", "Movies/Videos", "Money", ""];
+var options = ["Soccer", "Gymnastics", "Softball/Baseball", "Other Sports", "School", "Church", "Chores", "10 plus ones", "In Bed", "Minecraft", "Movies/Videos", "Money", ""];
 var users = ["G", "L","E"]
 var given;
 var date;
@@ -58,8 +58,8 @@ window.onload = loadMainScreen;
 
 
 function addOrSubtract() {
-  if (selection == 11) {
-    options.splice(10, 1, document.getElementById("otherInp").value)
+  if (selection == 13) {
+    options.splice(12, 1, document.getElementById("otherInp").value)
   }
   document.body.innerHTML = `<header><h1>`+account+`'s Bank 10s</h1></header><br>
   <center><h2>How Many Bank 10s would you like to add or subtract?</h2></center>
@@ -77,12 +77,14 @@ function whyBank() {
         <li><a href="javascript:(select(3))" id="s3">Softball/Baseball</a></li>
         <li><a href="javascript:(select(4))" id="s4">Other Sports</a></li>
         <li><a href="javascript:(select(5))" id="s5">School</a></li>
-        <li><a href="javascript:(select(6))" id="s6">Chores</a></li>
-        <li><a href="javascript:(select(7))" id="s7">10 plus ones</a></li>
-        <li><a href="javascript:(select(8))" id="s8">Minecraft</a></li>
-        <li><a href="javascript:(select(9))" id="s9">Movies/Videos</a></li>
-        <li><a href="javascript:(select(10))" id="s10">Money</a></li>
-        <li><a href="javascript:(select(11))" id="s11">Other</a></li>
+        <li><a href="javascript:(select(6))" id="s6">Church</a></li>
+        <li><a href="javascript:(select(7))" id="s7">Chores</a></li>
+        <li><a href="javascript:(select(8))" id="s8">10 plus ones</a></li>
+        <li><a href="javascript:(select(9))" id="s9">In Bed</a></li>
+        <li><a href="javascript:(select(10))" id="s10">Minecraft</a></li>
+        <li><a href="javascript:(select(11))" id="s11">Movies/Videos</a></li>
+        <li><a href="javascript:(select(12))" id="s12">Money</a></li>
+        <li><a href="javascript:(select(13))" id="s13">Other</a></li>
       </ul>
     </nav>
     <br><button class="disabledbttn" onclick="addOrSubtract()">Continue</button>
@@ -90,7 +92,7 @@ function whyBank() {
 }
 
 function select(num) {
-  if (num == 11 && selection != 11) {
+  if (num == 13 && selection != 13) {
     document.body.innerHTML = `<header><h1>`+account+`'s Bank 10s</h1></header><br>
   <center><h2>Reason of Bank 10?</h2></center>
   <center><nav id="breakLine">
@@ -100,12 +102,14 @@ function select(num) {
         <li><a href="javascript:(select(3))" id="s3">Softball/Baseball</a></li>
         <li><a href="javascript:(select(4))" id="s4">Other Sports</a></li>
         <li><a href="javascript:(select(5))" id="s5">School</a></li>
-        <li><a href="javascript:(select(6))" id="s6">Chores</a></li>
-        <li><a href="javascript:(select(7))" id="s7">10 plus ones</a></li>
-        <li><a href="javascript:(select(8))" id="s8">Minecraft</a></li>
-        <li><a href="javascript:(select(9))" id="s9">Movies/Videos</a></li>
-        <li><a href="javascript:(select(10))" id="s10">Money</a></li>
-        <li><a href="javascript:(select(11))" id="s11">Other</a></li>
+        <li><a href="javascript:(select(6))" id="s6">Church</a></li>
+        <li><a href="javascript:(select(7))" id="s7">Chores</a></li>
+        <li><a href="javascript:(select(8))" id="s8">10 plus ones</a></li>
+        <li><a href="javascript:(select(9))" id="s9">In Bed</a></li>
+        <li><a href="javascript:(select(10))" id="s10">Minecraft</a></li>
+        <li><a href="javascript:(select(11))" id="s11">Movies/Videos</a></li>
+        <li><a href="javascript:(select(12))" id="s12">Money</a></li>
+        <li><a href="javascript:(select(13))" id="s13">Other</a></li>
       </ul>
     </nav>
     <textarea id="otherInp" placeholder="Please Specify..." rows="6" cols="30"></textarea><br>
@@ -113,7 +117,7 @@ function select(num) {
     </center>`
   }
 
-  if (num != 11) {
+  if (num != 13) {
     document.body.innerHTML = `<header><h1>`+account+`'s Bank 10s</h1></header><br>
   <center><h2>Reason of Bank 10?</h2></center>
   <center><nav id="breakLine">
@@ -123,12 +127,14 @@ function select(num) {
         <li><a href="javascript:(select(3))" id="s3">Softball/Baseball</a></li>
         <li><a href="javascript:(select(4))" id="s4">Other Sports</a></li>
         <li><a href="javascript:(select(5))" id="s5">School</a></li>
-        <li><a href="javascript:(select(6))" id="s6">Chores</a></li>
-        <li><a href="javascript:(select(7))" id="s7">10 plus ones</a></li>
-        <li><a href="javascript:(select(8))" id="s8">Minecraft</a></li>
-        <li><a href="javascript:(select(9))" id="s9">Movies/Videos</a></li>
-        <li><a href="javascript:(select(10))" id="s10">Money</a></li>
-        <li><a href="javascript:(select(11))" id="s11">Other</a></li>
+        <li><a href="javascript:(select(6))" id="s6">Church</a></li>
+        <li><a href="javascript:(select(7))" id="s7">Chores</a></li>
+        <li><a href="javascript:(select(8))" id="s8">10 plus ones</a></li>
+        <li><a href="javascript:(select(9))" id="s9">In Bed</a></li>
+        <li><a href="javascript:(select(10))" id="s10">Minecraft</a></li>
+        <li><a href="javascript:(select(11))" id="s11">Movies/Videos</a></li>
+        <li><a href="javascript:(select(12))" id="s12">Money</a></li>
+        <li><a href="javascript:(select(13))" id="s13">Other</a></li>
       </ul>
     </nav>
     <br><button class="continue-button" onclick="addOrSubtract()">Continue</button>
