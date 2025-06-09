@@ -181,14 +181,22 @@ function noClk() {
 }
 
 function viewHistory() {
-  var htmlBodyTxt = `<header><h1>`+account+`'s Bank 10 History</h1></header><br><table><tr>
+  var htmlBodyTxt = `<header><h1>`+account+`'s Bank 10 History</h1></header><br>
+  <center><div class="dropdown">
+  <button onclick="clickDropdown()" class="dropbtn"><b>Sort By</b></button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#" style="text-align: left">Date Used</a>
+    <a href="#" style="text-align: left">Date Added</a>
+  </div>
+</div>&nbsp&nbsp<button class="dropbtn" onclick="window.scrollTo(0, document.body.scrollHeight);"><b>Goto Bottom</b></button>&nbsp&nbsp<button class="dropbtn" onclick=""><b>Clear Space</b></button></center><br>
+  <table><tr>
     <th>Date</th>
     <th>Reason</th>
     <th>Amount</th>
   </tr>`
 
   for (let i = 0; i < userData.length; i += 3) {
-    htmlBodyTxt = htmlBodyTxt + `<tr>
+    htmlBodyTxt = htmlBodyTxt +`<tr>
     <td>` + userData[i + 2] + `</td>
     <td>` + userData[i + 1] + `</td>
     <td>` + userData[i] + `</td>
