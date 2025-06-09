@@ -63,7 +63,7 @@ function addOrSubtract() {
   }
   document.body.innerHTML = `<header><h1>`+account+`'s Bank 10s</h1></header><br>
   <center><h2>How Many Bank 10s would you like to add or subtract?</h2></center>
-  <center><input type="number" step="1" id="numbInp" value="37"><br><br><button class="continue-button" onclick="dateTing()">Continue</button></center>`
+  <center><input type="number" step="1" id="numbInp" value=""><br><br><button class="continue-button" onclick="dateTing()">Continue</button></center>`
 }
 
 function whyBank() {
