@@ -194,16 +194,17 @@ function viewHistory() {
     <th>Reason</th>
     <th>Amount</th>
   </tr>`
+ var tableTxt = ``;
 
   for (let i = 0; i < userData.length; i += 3) {
-    htmlBodyTxt = htmlBodyTxt +`<tr>
+    tableTxt = `<tr>
     <td>` + userData[i + 2] + `</td>
     <td>` + userData[i + 1] + `</td>
     <td>` + userData[i] + `</td>
   </tr>
-  `
+  ` + tableTxt
   }
-  htmlBodyTxt = htmlBodyTxt + `</table>`;
+  htmlBodyTxt = htmlBodyTxt + tableTxt + `</table>`;
   htmlBodyTxt = htmlBodyTxt + `<br><center><button class="continue-button" onclick="noClk()">Back</button></center>`
   document.body.innerHTML = htmlBodyTxt;
 }
