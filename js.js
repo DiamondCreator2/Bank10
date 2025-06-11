@@ -10,6 +10,10 @@ var users = ["G", "L","E"]
 var given;
 var date;
 var userData = [];
+var sortedList = [];
+var displayList = [];
+var loadType = 1;
+var killed = 0;
 
 function loadMainScreen() {
   console.log(window.location.href)
@@ -181,26 +185,36 @@ function noClk() {
 }
 
 function viewHistory() {
+  sortDates();
+  if (loadType == 1) {
+  	displayList = sortedList;
+  } else {
+  	displayList = userData;
+  }
   var htmlBodyTxt = `<header><h1>`+account+`'s Bank 10 History</h1></header><br>
   <center><div class="dropdown">
   <button onclick="clickDropdown()" class="dropbtn"><b>Sort By</b></button>
   <div id="myDropdown" class="dropdown-content">
-    <a href="#" style="text-align: left">Date Used</a>
-    <a href="#" style="text-align: left">Date Added</a>
+    <a onclick="loadType=1;viewHistory();" style="text-align: left">Date Used</a>
+    <a onclick="loadType=2;viewHistory();" style="text-align: left">Date Added</a>
   </div>
-</div>&nbsp&nbsp<button class="dropbtn" onclick="window.scrollTo(0, document.body.scrollHeight);"><b>Goto Bottom</b></button>&nbsp&nbsp<button class="dropbtn" onclick=""><b>Clear Space</b></button></center><br>
+</div>&nbsp&nbsp<button class="dropbtn" onclick="window.scrollTo(0, document.body.scrollHeight);"><b>Goto Bottom</b></button>&nbsp&nbsp<button class="dropbtn" onclick="on()"><b>Clear Space</b></button></center><br>
   <table><tr>
     <th>Date</th>
     <th>Reason</th>
     <th>Amount</th>
-  </tr>`
- var tableTxt = ``;
+  </tr>
+  <div id="overlay">
+  <div id="text" style="width: 300px; height: 200px; background:white;color:black;font-size:25px;"><center style="padding-top: 10px;"><b>Delete Rows</b></center><br><center><input type="number" value="`+ Math.round(displayList.length/6) +`" id="delBx" style="width:100px;" max="`+ displayList.length/3 +`" min="0">&nbsp&nbsp<b>/ `+displayList.length/3+`</b><br><br><button onclick="off(document.getElementById('delBx').value);" class="continue-button"><b>Confirm</b></button></center></div>
+</div>
+  `
+  var tableTxt = ``;
 
-  for (let i = 0; i < userData.length; i += 3) {
+  for (let i = 0; i < displayList.length; i += 3) {
     tableTxt = `<tr>
-    <td>` + userData[i + 2] + `</td>
-    <td>` + userData[i + 1] + `</td>
-    <td>` + userData[i] + `</td>
+    <td>` + displayList[i + 2] + `</td>
+    <td>` + displayList[i + 1] + `</td>
+    <td>` + displayList[i] + `</td>
   </tr>
   ` + tableTxt
   }
@@ -209,12 +223,62 @@ function viewHistory() {
   document.body.innerHTML = htmlBodyTxt;
 }
 
-function clickDropdown() {
-  document.getElementById("myDropdown").classList.toggle("show");
+function sortDates(){
+  sortedList = ['ex','ex2',Infinity];
+  var currentDate = "";
+  for(let i = 0; i < userData.length/3; i++) {
+  	currentDate = userData[(i*3)+2].replaceAll("-","");
+    var i1 = 0;
+    var sLst = sortedList.length/3;
+    while(i1 < sLst){
+      var currentItem = sortedList[(i1*3)+2].toString().replaceAll("-","");
+      if(currentDate == "Date not given.") {
+      	sortedList.splice(0, 0, userData[(i*3)]);
+        sortedList.splice(0+1, 0, userData[(i*3)+1]);
+        sortedList.splice(0+2, 0, userData[(i*3)+2]);
+        break
+      } else if(currentDate < currentItem) {
+    		sortedList.splice((i1*3), 0, userData[(i*3)]);
+        sortedList.splice((i1*3)+1, 0, userData[(i*3)+1]);
+        sortedList.splice((i1*3)+2, 0, userData[(i*3)+2]);
+        break
+    	}
+      i1++
+      if(killed == 1) {
+      	break
+      }
+    }
+  }
+  sortedList.splice(sortedList.length-2,3);
+  sortedList.splice(sortedList.length-1,3);
+  console.log(sortedList);
 }
 
 
 function reset() {
-  userData = [];
+	userData = [];
   saveData();
+}
+
+function kill() {
+	killed = 1;
+}
+
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off(x) {
+  document.getElementById("overlay").style.display = "none";
+  var startingValue = 0;
+  for(var i = 0; i < x; i++) {
+  	startingValue += parseInt(userData[0]);
+  	userData.splice(0,3)
+    
+  }
+  userData.splice(0,0,"Date not given.")
+  userData.splice(0,0,"Starting Value")
+  userData.splice(0,0,startingValue)
+  saveData();
+  viewHistory();
 }
