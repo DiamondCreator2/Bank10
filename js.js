@@ -223,6 +223,10 @@ function viewHistory() {
   document.body.innerHTML = htmlBodyTxt;
 }
 
+function clickDropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
 function sortDates(){
   sortedList = ['ex','ex2',Infinity];
   var currentDate = "";
